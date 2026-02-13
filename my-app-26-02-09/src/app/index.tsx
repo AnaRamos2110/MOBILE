@@ -5,11 +5,11 @@ export default function Index() {
     return(
         <View style={styles.container}>
             <Image 
-            source={require("@/assets/imagens/imgs1.png")}
+            source={require("@/assets/imgs1.png")}
             style={styles.ilustration}
             /> 
-            <Input />
-            <Input />
+            <Input placeholder="E-mail"/>
+            <Input placeholder="Senha" secureTextEntry/>
             <Text>Não tem uma conta? Cadastre-se aqui</Text>
         </View>
     )
