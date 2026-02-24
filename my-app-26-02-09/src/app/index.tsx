@@ -1,20 +1,36 @@
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button"
-import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
+import { Image, StyleSheet, Text, View, ScrollView, KeyboardAvoidingView, Platform, Alert} from "react-native";
 import { Link } from "expo-router";
+import { useState } from "react";
 
 export default function Index() {
+    const [email, setEmail]= useState("");
+    
+    function handleSignin() {
+        console.log(email)
+        Alert.alert("Entrar", "Preencha e-mail e senha para entrar!")     
+    }
+    
     return(
-        <ScrollView>
+        <KeyboardAvoidingView style={{flex:1}}
+        behavior={Platform.select({ios:"padding", android:"height"})}
+        >
+        <ScrollView contentContainerStyle={{ flexGrow:1 }}>
         <View style={styles.container}>
             <Image 
             source={require("@/assets/imgs1.png")}
             style={styles.ilustration}
             /> 
+            <Text style={styles.title}>Entrar</Text>
+            <Text style={styles.subtitle}>Acesse sua conta com e-mail e senha</Text>
             <View style={styles.form}>
-                <Input placeholder="E-mail" keyboardType="email-address" />
+                <Input placeholder="E-mail" keyboardType="email-address" 
+                //onChangeText={(text) => console.log(text)}
+                onChangeText={setEmail} 
+                />
                 <Input placeholder="Senha" secureTextEntry/>
-                <Button label="Entrar" style={{backgroundColor:"green"}}/>
+                <Button label="Entrar"  onPress={handleSignin}  style={{backgroundColor:"green"}}/>
             </View>
             <Text style={styles.footerText}>Não tem uma conta? 
                 <Link href="/signup" style={styles.footerLink}>
@@ -23,6 +39,7 @@ export default function Index() {
             </Text>
         </View>
         </ScrollView>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -50,5 +67,12 @@ const styles = StyleSheet.create({
     form:{
         marginTop: 24,
         gap:12
-    }
+    },
+    title: {
+        fontWeight:"900",
+        fontSize: 32
+    },
+    subtitle: {
+        fontSize:16,
+    },
 })

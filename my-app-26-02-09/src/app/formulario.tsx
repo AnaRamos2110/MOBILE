@@ -1,39 +1,32 @@
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button"
-import { Image, StyleSheet, Text, View, ScrollView, KeyboardAvoidingView, Platform, Alert } from "react-native";
+import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
 import { Link } from "expo-router";
 
 export default function Index() {
-   
     return(
-        <KeyboardAvoidingView style={{flex:1}}
-                behavior={Platform.select({ios:"padding", android:"height"})}
-                >
-        <ScrollView contentContainerStyle={{ flexGrow:1 }}
-        showsVerticalScrollIndicator={false} //para não mostrar a barra de rolagem
-        >
+        <ScrollView>
         <View style={styles.container}>
+            <Text>Cadastrar</Text>
+            <Text>Crie sua conta para acessar</Text>
             <Image 
             source={require("@/assets/formulario.png")}
             style={styles.ilustration}
             /> 
-            <Text style={styles.title}>Cadastrar</Text>
-            <Text style={styles.subtitle}>Crie sua conta para acessar</Text>
             <View style={styles.form}>
                 <Input placeholder="Nome" keyboardType="default" />
                 <Input placeholder="Email" keyboardType="email-address"/>
                 <Input placeholder="Senha" secureTextEntry />
                 <Input placeholder="Confirmar senha" secureTextEntry />
-                <Button label="Entrar" style={{backgroundColor: "blue"}}/>
+                <Button label="Entrar" style={{backgroundColor:"light-blue"}}/>
             </View>
-            <Text style={styles.footerText}>Já tem uma conta?? 
-                <Link href="/" style={styles.footerLink}>
+            <Text style={styles.title}>Já tem uma conta?? 
+                <Link href="/" style={styles.subtitle}>
                 {" "} Entre aqui
                 </Link>
             </Text>
         </View>
         </ScrollView>
-        </KeyboardAvoidingView>
     )
 }
 
@@ -63,14 +56,10 @@ const styles = StyleSheet.create({
         gap:12
     },
     title: {
-        flex:1,
-        alignItems:"flex-start",
         fontWeight:"900",
         fontSize: 32
     },
     subtitle: {
         fontSize:16,
-        flex:1,
     },
 })
-
