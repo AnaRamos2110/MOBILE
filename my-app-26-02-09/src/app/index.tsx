@@ -6,17 +6,21 @@ import { useState } from "react";
 
 export default function Index() {
     const [email, setEmail]= useState("");
-    
+    const [senha, setSenha]= useState("");
     function handleSignin() {
-        console.log(email)
+        console.log(email, senha)
         Alert.alert("Entrar", "Preencha e-mail e senha para entrar!")     
     }
     
     return(
         <KeyboardAvoidingView style={{flex:1}}
-        behavior={Platform.select({ios:"padding", android:"height"})}
+            behavior={Platform.select({ios:"padding", android:"height"})}
+            
         >
-        <ScrollView contentContainerStyle={{ flexGrow:1 }}>
+        <ScrollView contentContainerStyle={{ flexGrow:1 }}
+            showsVerticalScrollIndicator={false} //para não mostrar a barra de rolagem
+            keyboardShouldPersistTaps="handled"
+        >
         <View style={styles.container}>
             <Image 
             source={require("@/assets/imgs1.png")}
@@ -28,8 +32,12 @@ export default function Index() {
                 <Input placeholder="E-mail" keyboardType="email-address" 
                 //onChangeText={(text) => console.log(text)}
                 onChangeText={setEmail} 
+                
                 />
-                <Input placeholder="Senha" secureTextEntry/>
+                <Input placeholder="Senha" 
+                secureTextEntry 
+                onChangeText={setSenha}
+                />
                 <Button label="Entrar"  onPress={handleSignin}  style={{backgroundColor:"green"}}/>
             </View>
             <Text style={styles.footerText}>Não tem uma conta? 
